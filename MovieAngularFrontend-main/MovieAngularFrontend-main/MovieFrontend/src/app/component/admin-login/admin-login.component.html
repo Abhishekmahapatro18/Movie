@@ -1,0 +1,16 @@
+<div class="adminLogin">
+    <div class="shadow-lg p-5 text-success text-center"
+      style="background-color: white; border-radius: 10px">
+      <h1>Admin Login</h1>
+      <form (ngSubmit)="adminLogin()">
+        <h3 *ngIf="errorMessage != ''" style="color: red">{{ errorMessage }}</h3>
+        <h2 class="text-center text-lg text-dark ">Email Id</h2>
+        <input [(ngModel)]="adminLoginData.emailId" name="email" type="email" id="defaultForm-username"
+          class="form-control validate" /><br />
+        <h2 class="text-center text-dark">Password</h2>
+        <input [(ngModel)]="adminLoginData.password" name="password" type="password" id="defaultForm-pass"
+          class="form-control validate" /><br />
+        <button type="submit" class="btn btn-success" style="width: 90%;">Login</button>
+      </form>
+    </div>
+  </div>

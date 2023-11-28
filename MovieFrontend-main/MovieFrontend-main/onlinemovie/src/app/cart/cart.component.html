@@ -1,0 +1,79 @@
+<ng-container *ngIf="products.length != 0" >
+  <div class="container" style="margin-top: 3vh;">
+    <div class="card-table">
+      <div class="card-product">
+        <table class="table" matSort (matSortChange)="sortData($event)">
+          <thead>
+            <tr>
+              <th>Sr.No</th>
+              <th>Movie Image</th>
+              <th mat-sort-header="name">Movie Name</th>
+              <th>Price</th>
+              <th mat-sort-header="quantity">Quantity</th>
+
+              <th mat-sort-header="price">Total</th>
+              <th>Action</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let item of sortedCart; let i = index">
+              <td>{{ i + 1 }}</td>
+              <td>
+                <img style="width: 100px; height: 100px; border-radius: 6px;" src="{{ item.product.imagepath }}" alt="" />
+              </td>
+              <td>{{ item.product.name }}</td>
+              <td style="width: 12%">₹{{ item.product.price }}</td>
+              <td style="width: 12%">
+                <span class="quantityControl" (click)="lessOneCart(item.id, item)">-</span><span
+                  class="border quantity">{{ item.quantity }}</span><span class="quantityControl"
+                  (click)="addOneCart(item.id, item)">+</span>
+              </td>
+              <td style="width: 12%">₹{{ item.price }}</td>
+              <td>
+                <button class="btn">
+                  <i class="fas fa-trash-alt" (click)="deleteItem(item.id)" id="del_item" style="color: red;"></i>
+                </button>
+              </td>
+            </tr>
+            <tr>
+              <td></td>
+              <td>
+                <button routerLink="/products" class="btn btn-warning" id="goto_products">
+                  Shop More
+                </button>
+              </td>
+              <td></td>
+              <td></td>
+              <td>
+                <strong>Total Price :₹{{ grandTotal }}</strong><br/>
+              </td>
+              <td>
+                <button routerLink="/paymentGateway" class="btn btn-success" id="checkout">
+                  CheckOut
+                </button>
+              </td>
+   
+              <td></td>
+
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</ng-container>
+
+<!-- For Empty Cart -->
+<ng-container *ngIf="products.length == 0">
+  <div class="container">
+    <div class="center">
+      <img
+        src="../../assets/images/popcorn.png" style="height: 150px; width: 150px;"
+        alt="" />
+      <h3>Cart is empty</h3>
+      <button routerLink="/products" class="btn btn-primary" id="to_products_page">
+        Book Now
+      </button>
+    </div>
+  </div>
+</ng-container>
